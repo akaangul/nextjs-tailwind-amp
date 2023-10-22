@@ -1,11 +1,22 @@
 import React from 'react'
 import Head from 'next/head'
+import { useEffect } from 'react';
+
 
 export const config = {
   amp: true,
 }
 
 const example: React.FC = () => {
+  useEffect(() => {
+    const referrer = document.referrer;
+
+    if (!referrer || !referrer.includes('https://www.google.com/')) {
+      // Eğer referer yoksa veya Google'dan gelmiyorsa, isteği reddedebilirsiniz.
+      window.location.href = '/error'; // Hata sayfasına yönlendirme yapabilirsiniz.
+    }
+  }, []);
+  
   return (
     <div className=" ">
       <Head>
